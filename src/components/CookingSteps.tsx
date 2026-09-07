@@ -37,10 +37,13 @@ export function CookingSteps({ steps }: CookingStepsProps) {
         </div>
       ) : (
         <div>
-          <p>
-            Étape {currentStepIndex + 1} sur {steps.length}
-          </p>
-          <p>{currentStep.instruction}</p>
+          <div aria-live="polite" aria-atomic="true">
+            <p>
+              Étape {currentStepIndex + 1} sur {steps.length}
+            </p>
+            <p>{currentStep.instruction}</p>
+          </div>
+
           {currentStep.durationSeconds !== undefined && (
             <Timer
               key={currentStep.id}
