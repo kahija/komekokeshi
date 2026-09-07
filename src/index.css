@@ -82,6 +82,27 @@ h3 {
   font-size: 1.5rem;
 }
 
-.recipe-card > p:last-child {
+.recipe-card > p:not(.recipe-country) {
   color: #70584c;
+}
+
+.recipe-toggle {
+  margin-top: 24px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 999px;
+  background-color: #b83245;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.recipe-toggle:hover {
+  background-color: #98293a;
+}
+
+.recipe-toggle:focus-visible {
+  outline: 3px solid #34251f;
+  outline-offset: 4px;
 }

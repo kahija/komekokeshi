@@ -1,4 +1,9 @@
+import { useState } from "react";
+import { ramenRecipe } from "./data/recipes";
+
 function App() {
+  const [showIngredients, setShowIngredients] = useState(false);
+
   return (
     <main className="home">
       <header className="home-header">
@@ -13,9 +18,32 @@ function App() {
         <h2 id="recipes-title">Ta première escale : le Japon</h2>
 
         <article className="recipe-card">
-          <p className="recipe-country">Japon</p>
-          <h3>Ramen japonais</h3>
-          <p>Prépare un bol de ramen réconfortant, une étape à la fois.</p>
+          <p className="recipe-country">{ramenRecipe.country}</p>
+          <h3>{ramenRecipe.title}</h3>
+          <p>{ramenRecipe.description}</p>
+
+          <button
+            className="recipe-toggle"
+            type="button"
+            aria-expanded={showIngredients}
+            aria-controls="recipe-ingredients"
+            onClick={() => setShowIngredients((isVisible) => !isVisible)}
+          >
+            {showIngredients
+              ? "Masquer les ingrédients"
+              : "Voir les ingrédients"}
+          </button>
+
+          <div id="recipe-ingredients" hidden={!showIngredients}>
+            <h4>Ingrédients pour {ramenRecipe.servings} personnes</h4>
+            <ul>
+              {ramenRecipe.ingredients.map((ingredient) => (
+                <li key={ingredient.id}>
+                  {ingredient.quantity} — {ingredient.name}
+                </li>
+              ))}
+            </ul>
+          </div>
         </article>
       </section>
     </main>
