@@ -1,9 +1,10 @@
 :root {
   font-family: system-ui, sans-serif;
-  color: #29211d;
+  color: #34251f;
   background-color: #fff8f0;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+  line-height: 1.6;
 }
 
 * {
@@ -15,8 +16,72 @@ body {
   min-width: 320px;
 }
 
-main {
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+}
+
+.home {
   max-width: 960px;
   margin-inline: auto;
-  padding: 32px 24px;
+  padding: 48px 24px;
+}
+
+.home-header {
+  max-width: 640px;
+  margin-bottom: 48px;
+}
+
+.home-brand {
+  margin-bottom: 24px;
+  color: #b83245;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.home-header h1 {
+  margin-bottom: 20px;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+}
+
+.home-header > p:last-child {
+  color: #70584c;
+  font-size: 1.125rem;
+}
+
+.home h2 {
+  margin-bottom: 24px;
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+}
+
+.recipe-card {
+  max-width: 420px;
+  padding: 28px;
+  border: 1px solid #efd4c5;
+  border-radius: 24px;
+  background-color: #ffffff;
+}
+
+.recipe-country {
+  margin-bottom: 12px;
+  color: #b83245;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.recipe-card h3 {
+  margin-bottom: 12px;
+  font-size: 1.5rem;
+}
+
+.recipe-card > p:last-child {
+  color: #70584c;
 }
