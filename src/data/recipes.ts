@@ -2,6 +2,7 @@ export type RecipeStep = {
   id: string;
   instruction: string;
   action: "cut" | "mix" | "pour" | "cook" | "serve";
+  durationSeconds?: number;
 };
 
 export type Recipe = {
@@ -36,6 +37,7 @@ export const ramenRecipe: Recipe = {
       instruction:
         "Plonge les œufs dans une casserole d’eau bouillante et laisse-les cuire 10 minutes. Refroidis-les sous l’eau froide, puis écale-les.",
       action: "cook",
+      durationSeconds: 600,
     },
     {
       id: "heat-broth",

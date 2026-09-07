@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { RecipeStep } from "../data/recipes";
+import { Timer } from "./Timer";
 
 type CookingStepsProps = {
   steps: RecipeStep[];
@@ -35,11 +36,17 @@ export function CookingSteps({ steps }: CookingStepsProps) {
           <p>Ton plat est prêt. Bon appétit !</p>
         </div>
       ) : (
-        <div aria-live="polite" aria-atomic="true">
+        <div>
           <p>
             Étape {currentStepIndex + 1} sur {steps.length}
           </p>
           <p>{currentStep.instruction}</p>
+          {currentStep.durationSeconds !== undefined && (
+            <Timer
+              key={currentStep.id}
+              durationSeconds={currentStep.durationSeconds}
+            />
+          )}
         </div>
       )}
 
