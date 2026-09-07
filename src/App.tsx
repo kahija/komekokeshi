@@ -3,6 +3,9 @@ import { ramenRecipe } from "./data/recipes";
 
 function App() {
   const [showIngredients, setShowIngredients] = useState(false);
+  const [currentStepIndex, setCurrentStepIndex] = useState(0);
+
+  const currentStep = ramenRecipe.steps[currentStepIndex];
 
   return (
     <main className="home">
@@ -45,6 +48,34 @@ function App() {
             </ul>
           </div>
         </article>
+      </section>
+      <section className="cooking" aria-labelledby="cooking-title">
+        <h2 id="cooking-title">Préparation</h2>
+
+        <div aria-live="polite" aria-atomic="true">
+          <p>
+            Étape {currentStepIndex + 1} sur {ramenRecipe.steps.length}
+          </p>
+          <p>{currentStep.instruction}</p>
+        </div>
+
+        <nav className="step-navigation" aria-label="Étapes de préparation">
+          <button
+            type="button"
+            disabled={currentStepIndex === 0}
+            onClick={() => setCurrentStepIndex((index) => index - 1)}
+          >
+            Précédent
+          </button>
+
+          <button
+            type="button"
+            disabled={currentStepIndex === ramenRecipe.steps.length - 1}
+            onClick={() => setCurrentStepIndex((index) => index + 1)}
+          >
+            Suivant
+          </button>
+        </nav>
       </section>
     </main>
   );

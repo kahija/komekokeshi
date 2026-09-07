@@ -106,3 +106,36 @@ h3 {
   outline: 3px solid #34251f;
   outline-offset: 4px;
 }
+
+.cooking {
+  margin-top: 40px;
+}
+
+.step-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.step-navigation button {
+  padding: 12px 20px;
+  border: 1px solid #b83245;
+  border-radius: 999px;
+  background-color: transparent;
+  color: #b83245;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.step-navigation button:focus-visible {
+  outline: 3px solid #34251f;
+  outline-offset: 4px;
+}
+
+.step-navigation button:disabled {
+  border-color: #d5c5bb;
+  color: #70584c;
+  cursor: default;
+}
