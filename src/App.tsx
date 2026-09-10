@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ramenRecipe } from "./data/recipes";
 import { CookingSteps } from "./components/CookingSteps";
+import "./App.css";
 
 function App() {
   const [showIngredients, setShowIngredients] = useState(false);

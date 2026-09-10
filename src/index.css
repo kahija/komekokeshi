@@ -1,9 +1,14 @@
 :root {
+  --color-text: #34251f;
+  --color-muted: #70584c;
+  --color-background: #fff8f0;
+  --color-primary: #b83245;
+  --color-primary-hover: #98293a;
+  --color-border: #efd4c5;
+
   font-family: system-ui, sans-serif;
-  color: #34251f;
-  background-color: #fff8f0;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  color: var(--color-text);
+  background-color: var(--color-background);
   line-height: 1.6;
 }
 
@@ -29,139 +34,34 @@ h3 {
   line-height: 1.2;
 }
 
-.home {
-  max-width: 960px;
-  margin-inline: auto;
-  padding: 48px 24px;
-}
-
-.home-header {
-  max-width: 640px;
-  margin-bottom: 48px;
-}
-
-.home-brand {
-  margin-bottom: 24px;
-  color: #b83245;
-  font-size: 1.25rem;
-  font-weight: 700;
-}
-
-.home-header h1 {
-  margin-bottom: 20px;
-  font-size: clamp(2rem, 6vw, 3.5rem);
-}
-
-.home-header > p:last-child {
-  color: #70584c;
-  font-size: 1.125rem;
-}
-
-.home h2 {
-  margin-bottom: 24px;
-  font-size: clamp(1.4rem, 4vw, 1.8rem);
-}
-
-.recipe-card {
-  max-width: 420px;
-  padding: 28px;
-  border: 1px solid #efd4c5;
-  border-radius: 24px;
-  background-color: #ffffff;
-}
-
-.recipe-country {
-  margin-bottom: 12px;
-  color: #b83245;
-  font-size: 0.875rem;
-  font-weight: 700;
-}
-
-.recipe-card h3 {
-  margin-bottom: 12px;
-  font-size: 1.5rem;
-}
-
-.recipe-card > p:not(.recipe-country) {
-  color: #70584c;
-}
-
-.recipe-toggle {
-  margin-top: 24px;
+/* Shared button styles */
+.recipe-toggle,
+.step-navigation button {
   padding: 12px 20px;
-  border: none;
   border-radius: 999px;
-  background-color: #b83245;
-  color: #ffffff;
   font: inherit;
   font-weight: 600;
   cursor: pointer;
 }
 
-.recipe-toggle:hover {
-  background-color: #98293a;
-}
-
-.recipe-toggle:focus-visible {
-  outline: 3px solid #34251f;
+.recipe-toggle:focus-visible,
+.step-navigation button:focus-visible {
+  outline: 3px solid var(--color-text);
   outline-offset: 4px;
 }
 
-.cooking {
-  margin-top: 32px;
-  padding: 24px;
-  border: 1px solid #efd4c5;
-  border-radius: 24px;
-  background-color: #fffdf9;
-}
-
-.cooking-instruction {
-  display: grid;
-  gap: 12px;
-  padding: 20px;
-  border-radius: 16px;
-  background-color: #fce8df;
-}
-
-.cooking-instruction > p:first-child {
-  color: #b83245;
-  font-weight: 700;
-}
-
-.cooking-instruction > p:last-child {
-  font-size: clamp(1.125rem, 3vw, 1.375rem);
-  font-weight: 600;
-  line-height: 1.5;
-}
-
-.timer {
+.recipe-toggle {
   margin-top: 24px;
-  padding-top: 24px;
-  border-top: 1px solid #efd4c5;
+  border: none;
+  background-color: var(--color-primary);
+  color: #ffffff;
 }
 
-.timer [role="timer"] {
-  color: #b83245;
-  font-size: 2.5rem;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
+.recipe-toggle:hover {
+  background-color: var(--color-primary-hover);
 }
 
-.cooking > .step-navigation {
-  padding-top: 24px;
-  border-top: 1px solid #efd4c5;
-}
-
-@media (max-width: 480px) {
-  .cooking {
-    padding: 16px;
-  }
-
-  .cooking-instruction {
-    padding: 16px;
-  }
-}
-
+/* Shared by cooking navigation and timer controls */
 .step-navigation {
   display: flex;
   flex-wrap: wrap;
@@ -170,74 +70,13 @@ h3 {
 }
 
 .step-navigation button {
-  padding: 12px 20px;
-  border: 1px solid #b83245;
-  border-radius: 999px;
+  border: 1px solid var(--color-primary);
   background-color: transparent;
-  color: #b83245;
-  font: inherit;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.step-navigation button:focus-visible {
-  outline: 3px solid #34251f;
-  outline-offset: 4px;
+  color: var(--color-primary);
 }
 
 .step-navigation button:disabled {
   border-color: #d5c5bb;
-  color: #70584c;
+  color: var(--color-muted);
   cursor: default;
-}
-
-#recipe-ingredients {
-  margin-top: 24px;
-}
-
-.ingredient-group {
-  margin-top: 20px;
-}
-
-.ingredient-group h5 {
-  margin: 0;
-  color: #b83245;
-  font-size: 1rem;
-  line-height: 1.4;
-}
-
-.ingredient-group ul {
-  margin-block: 8px 0;
-  padding-left: 20px;
-}
-
-.ingredient-group li + li {
-  margin-top: 6px;
-}
-
-.cooking-progress {
-  display: block;
-  width: 100%;
-  height: 8px;
-  margin-bottom: 24px;
-  overflow: hidden;
-  appearance: none;
-  border: none;
-  border-radius: 999px;
-  background-color: #f3ded2;
-}
-
-.cooking-progress::-webkit-progress-bar {
-  background-color: #f3ded2;
-  border-radius: 999px;
-}
-
-.cooking-progress::-webkit-progress-value {
-  background-color: #b83245;
-  border-radius: 999px;
-}
-
-.cooking-progress::-moz-progress-bar {
-  background-color: #b83245;
-  border-radius: 999px;
 }

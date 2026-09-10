@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { RecipeStep } from "../data/recipes";
 import { Timer } from "./Timer";
+import "./CookingSteps.css";
 
 type CookingStepsProps = {
   steps: RecipeStep[];
