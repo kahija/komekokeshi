@@ -29,6 +29,12 @@ export function CookingSteps({ steps }: CookingStepsProps) {
   return (
     <section className="cooking" aria-labelledby="cooking-title">
       <h2 id="cooking-title">Préparation</h2>
+      <progress
+        className="cooking-progress"
+        aria-label="Étapes terminées"
+        max={steps.length}
+        value={isRecipeComplete ? steps.length : currentStepIndex}
+      />
 
       {isRecipeComplete ? (
         <div role="status">
