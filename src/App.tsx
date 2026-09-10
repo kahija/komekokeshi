@@ -4,6 +4,28 @@ import { CookingSteps } from "./components/CookingSteps";
 
 function App() {
   const [showIngredients, setShowIngredients] = useState(false);
+  const [isCooking, setIsCooking] = useState(false);
+
+  if (isCooking) {
+    return (
+      <main className="home">
+        <header className="home-header">
+          <p className="home-brand">KomeKokeshi</p>
+          <h1>{ramenRecipe.title}</h1>
+
+          <button
+            className="recipe-toggle"
+            type="button"
+            onClick={() => setIsCooking(false)}
+          >
+            Quitter la préparation
+          </button>
+        </header>
+
+        <CookingSteps steps={ramenRecipe.steps} />
+      </main>
+    );
+  }
 
   return (
     <main className="home">
@@ -45,9 +67,16 @@ function App() {
               ))}
             </ul>
           </div>
+
+          <button
+            className="recipe-toggle"
+            type="button"
+            onClick={() => setIsCooking(true)}
+          >
+            Commencer la recette
+          </button>
         </article>
       </section>
-      <CookingSteps steps={ramenRecipe.steps} />
     </main>
   );
 }
