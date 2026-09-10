@@ -5,6 +5,9 @@ import { CookingSteps } from "./components/CookingSteps";
 function App() {
   const [showIngredients, setShowIngredients] = useState(false);
   const [isCooking, setIsCooking] = useState(false);
+  const ingredientGroups = [
+    ...new Set(ramenRecipe.ingredients.map((ingredient) => ingredient.group)),
+  ];
 
   if (isCooking) {
     return (
@@ -59,13 +62,22 @@ function App() {
 
           <div id="recipe-ingredients" hidden={!showIngredients}>
             <h4>Ingrédients pour {ramenRecipe.servings} personnes</h4>
-            <ul>
-              {ramenRecipe.ingredients.map((ingredient) => (
-                <li key={ingredient.id}>
-                  {ingredient.quantity} — {ingredient.name}
-                </li>
-              ))}
-            </ul>
+
+            {ingredientGroups.map((group) => (
+              <section className="ingredient-group" key={group}>
+                <h5>{group}</h5>
+
+                <ul>
+                  {ramenRecipe.ingredients
+                    .filter((ingredient) => ingredient.group === group)
+                    .map((ingredient) => (
+                      <li key={ingredient.id}>
+                        {ingredient.quantity} — {ingredient.name}
+                      </li>
+                    ))}
+                </ul>
+              </section>
+            ))}
           </div>
 
           <button
