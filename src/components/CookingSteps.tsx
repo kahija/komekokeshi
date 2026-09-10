@@ -37,7 +37,11 @@ export function CookingSteps({ steps }: CookingStepsProps) {
         </div>
       ) : (
         <div>
-          <div aria-live="polite" aria-atomic="true">
+          <div
+            className="cooking-instruction"
+            aria-live="polite"
+            aria-atomic="true"
+          >
             <p>
               Étape {currentStepIndex + 1} sur {steps.length}
             </p>
