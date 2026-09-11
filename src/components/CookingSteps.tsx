@@ -1,16 +1,80 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { RecipeStep } from "../data/recipes";
 import { Timer } from "./Timer";
 import kokeshiKitchen from "../assets/kokeshi-kitchen.png";
 import "./CookingSteps.css";
 
 type CookingStepsProps = {
+  recipeId: string;
   steps: RecipeStep[];
 };
 
-export function CookingSteps({ steps }: CookingStepsProps) {
-  const [currentStepIndex, setCurrentStepIndex] = useState(0);
-  const [isRecipeComplete, setIsRecipeComplete] = useState(false);
+type CookingProgress = {
+  stepIndex: number;
+  isComplete: boolean;
+};
+
+function readProgress(storageKey: string, stepCount: number): CookingProgress {
+  const initialProgress = {
+    stepIndex: 0,
+    isComplete: false,
+  };
+
+  try {
+    const storedValue = localStorage.getItem(storageKey);
+
+    if (!storedValue) return initialProgress;
+
+    const saved = JSON.parse(storedValue);
+
+    if (
+      saved === null ||
+      typeof saved !== "object" ||
+      !Number.isInteger(saved.stepIndex) ||
+      saved.stepIndex < 0 ||
+      saved.stepIndex >= stepCount ||
+      typeof saved.isComplete !== "boolean" ||
+      (saved.isComplete && saved.stepIndex !== stepCount - 1)
+    ) {
+      return initialProgress;
+    }
+
+    return {
+      stepIndex: saved.stepIndex,
+      isComplete: saved.isComplete,
+    };
+  } catch {
+    return initialProgress;
+  }
+}
+
+export function CookingSteps({ recipeId, steps }: CookingStepsProps) {
+  const storageKey = `komekokeshi:progress:${recipeId}`;
+
+  const [savedProgress] = useState(() =>
+    readProgress(storageKey, steps.length),
+  );
+
+  const [currentStepIndex, setCurrentStepIndex] = useState(
+    savedProgress.stepIndex,
+  );
+  const [isRecipeComplete, setIsRecipeComplete] = useState(
+    savedProgress.isComplete,
+  );
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        storageKey,
+        JSON.stringify({
+          stepIndex: currentStepIndex,
+          isComplete: isRecipeComplete,
+        }),
+      );
+    } catch {
+      // Cooking remains available when browser storage is unavailable.
+    }
+  }, [storageKey, currentStepIndex, isRecipeComplete]);
 
   const currentStep = steps[currentStepIndex];
   const isLastStep = currentStepIndex === steps.length - 1;

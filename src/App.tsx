@@ -35,7 +35,7 @@ function App() {
           </div>
         </header>
 
-        <CookingSteps steps={ramenRecipe.steps} />
+        <CookingSteps recipeId={ramenRecipe.id} steps={ramenRecipe.steps} />
       </main>
     );
   }
