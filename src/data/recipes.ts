@@ -1,6 +1,7 @@
 export type RecipeStep = {
   id: string;
   instruction: string;
+  details?: string;
   action: "cut" | "mix" | "pour" | "cook" | "cool" | "wait" | "serve";
   durationSeconds?: number;
 };
@@ -197,8 +198,9 @@ export const ramenRecipe: Recipe = {
   steps: [
     {
       id: "plan-preparation",
-      instruction:
-        "La veille — Prépare une marmite pour le bouillon, une petite casserole pour les œufs, une casserole pour le poulet et un thermomètre de cuisine. Les marinades et le bouillon se préparent à l’avance. Vérifie que ta sauce soja et tes nouilles ne contiennent pas d’alcool.",
+      instruction: "La veille, prépare le matériel et vérifie tes ingrédients.",
+      details:
+        "Prévois une marmite pour le bouillon, une petite casserole pour les œufs, une casserole pour le poulet et un thermomètre de cuisine. Les marinades et le bouillon se préparent à l’avance. Vérifie que ta sauce soja et tes nouilles ne contiennent pas d’alcool.",
       action: "wait",
     },
     {
