@@ -218,7 +218,9 @@ export const ramenRecipe: Recipe = {
     {
       id: "simmer-stock",
       instruction:
-        "Laisse frémir doucement pendant 3 à 4 heures sous surveillance, en ajoutant un peu d’eau chaude si nécessaire pour garder les morceaux immergés. Pendant ce temps, passe aux œufs et au poulet. Utilise un minuteur séparé pour le bouillon : celui de l’application s’arrête quand tu changes d’étape.",
+        "Laisse frémir le bouillon 3 à 4 heures sous surveillance. Ajoute de l’eau chaude si nécessaire pour garder les morceaux immergés.",
+      details:
+        "Pendant la cuisson, prépare les œufs et le poulet. Utilise un minuteur séparé pour le bouillon : celui de l’application s’arrête lorsque tu changes d’étape.",
       action: "cook",
     },
     {

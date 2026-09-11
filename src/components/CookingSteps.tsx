@@ -57,7 +57,7 @@ export function CookingSteps({ steps }: CookingStepsProps) {
 
           {currentStep.details && (
             <details key={currentStep.id} className="cooking-step-details">
-              <summary>Conseils et matériel</summary>
+              <summary>Précisions de l’étape</summary>
               <p>{currentStep.details}</p>
             </details>
           )}
