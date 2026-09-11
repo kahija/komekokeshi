@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { RecipeStep } from "../data/recipes";
 import { Timer } from "./Timer";
+import kokeshiKitchen from "../assets/kokeshi-kitchen.png";
 import "./CookingSteps.css";
 
 type CookingStepsProps = {
@@ -30,6 +31,7 @@ export function CookingSteps({ steps }: CookingStepsProps) {
   return (
     <section className="cooking" aria-labelledby="cooking-title">
       <h2 id="cooking-title">Préparation</h2>
+
       <progress
         className="cooking-progress"
         aria-label="Étapes terminées"
@@ -43,25 +45,31 @@ export function CookingSteps({ steps }: CookingStepsProps) {
           <p>Ton plat est prêt. Bon appétit !</p>
         </div>
       ) : (
-        <div>
-          <div
-            className="cooking-instruction"
-            aria-live="polite"
-            aria-atomic="true"
-          >
-            <p>
-              Étape {currentStepIndex + 1} sur {steps.length}
-            </p>
-            <p>{currentStep.instruction}</p>
-          </div>
-
-          {currentStep.durationSeconds !== undefined && (
-            <Timer
-              key={currentStep.id}
-              durationSeconds={currentStep.durationSeconds}
-            />
-          )}
+        <div
+          className="cooking-instruction"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          <p>
+            Étape {currentStepIndex + 1} sur {steps.length}
+          </p>
+          <p>{currentStep.instruction}</p>
         </div>
+      )}
+
+      <img
+        className="cooking-scene"
+        src={kokeshiKitchen}
+        alt="La Kokeshi t’accompagne dans sa cuisine japonaise."
+        width={1448}
+        height={1086}
+      />
+
+      {!isRecipeComplete && currentStep.durationSeconds !== undefined && (
+        <Timer
+          key={currentStep.id}
+          durationSeconds={currentStep.durationSeconds}
+        />
       )}
 
       <nav className="step-navigation" aria-label="Étapes de préparation">
