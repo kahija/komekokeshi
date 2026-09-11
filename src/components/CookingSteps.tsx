@@ -87,7 +87,11 @@ export function CookingSteps({ steps }: CookingStepsProps) {
               Précédent
             </button>
 
-            <button type="button" onClick={handleNextStep}>
+            <button
+              className="step-primary"
+              type="button"
+              onClick={handleNextStep}
+            >
               {isLastStep ? "Terminer la recette" : "Suivant"}
             </button>
           </>
