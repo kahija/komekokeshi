@@ -78,3 +78,57 @@
 .ingredient-group li + li {
   margin-top: 6px;
 }
+
+.cooking-page {
+  padding-block: 24px;
+}
+
+.cooking-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.cooking-back {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background-color: transparent;
+  color: var(--color-text);
+  font: inherit;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.cooking-back:hover {
+  background-color: #fce8df;
+}
+
+.cooking-back:focus-visible {
+  outline: 3px solid var(--color-text);
+  outline-offset: 4px;
+}
+
+.cooking-heading {
+  min-width: 0;
+}
+
+.cooking-brand {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.cooking-heading h1 {
+  margin-block: 4px;
+  font-size: clamp(1.125rem, 3vw, 1.5rem);
+}
+
+.cooking-details {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}

@@ -3,27 +3,34 @@ import { ramenRecipe } from "./data/recipes";
 import { CookingSteps } from "./components/CookingSteps";
 import "./App.css";
 
+const ingredientGroups = [
+  ...new Set(ramenRecipe.ingredients.map((ingredient) => ingredient.group)),
+];
+
 function App() {
   const [showIngredients, setShowIngredients] = useState(false);
   const [isCooking, setIsCooking] = useState(false);
-  const ingredientGroups = [
-    ...new Set(ramenRecipe.ingredients.map((ingredient) => ingredient.group)),
-  ];
 
   if (isCooking) {
     return (
-      <main className="home">
-        <header className="home-header">
-          <p className="home-brand">KomeKokeshi</p>
-          <h1>{ramenRecipe.title}</h1>
-
+      <main className="home cooking-page">
+        <header className="cooking-header">
           <button
-            className="recipe-toggle"
+            className="cooking-back"
             type="button"
             onClick={() => setIsCooking(false)}
+            aria-label="Quitter la préparation et revenir à l’accueil"
           >
-            Quitter la préparation
+            <span aria-hidden="true">←</span>
           </button>
+
+          <div className="cooking-heading">
+            <p className="cooking-brand">KomeKokeshi</p>
+            <h1>{ramenRecipe.title}</h1>
+            <p className="cooking-details">
+              {ramenRecipe.country} · {ramenRecipe.servings} personnes
+            </p>
+          </div>
         </header>
 
         <CookingSteps steps={ramenRecipe.steps} />
