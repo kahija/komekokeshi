@@ -44,14 +44,22 @@ function App() {
     <main className="home">
       <header className="home-header">
         <Brand />
-        <h1>Cuisine le monde avec ta Kokeshi</h1>
-        <p>
-          Des recettes guidées pas à pas, avec une petite complice en cuisine.
-        </p>
+
+        <div className="home-introduction">
+          <p className="home-eyebrow">Cuisine guidée, étape par étape</p>
+          <h1>Cuisine le monde avec ta Kokeshi</h1>
+          <p className="home-tagline">
+            Une recette, des gestes simples et une petite complice qui cuisine
+            avec toi.
+          </p>
+        </div>
       </header>
 
-      <section aria-labelledby="recipes-title">
-        <h2 id="recipes-title">Ta première escale : le Japon</h2>
+      <section className="recipe-showcase" aria-labelledby="recipes-title">
+        <div className="section-heading">
+          <p>Recette proposée</p>
+          <h2 id="recipes-title">Ta première escale : le Japon</h2>
+        </div>
 
         <article className="recipe-card">
           <img
@@ -141,6 +149,25 @@ function App() {
             </div>
           </div>
         </article>
+
+        <aside className="import-preview" aria-labelledby="import-title">
+          <span className="import-icon" aria-hidden="true">
+            ↑
+          </span>
+
+          <div>
+            <p className="import-label">Prochaine fonctionnalité</p>
+            <h2 id="import-title">Importe ta propre recette</h2>
+            <p>
+              Tu pourras coller un lien ou ajouter une recette pour être guidé
+              par ta Kokeshi.
+            </p>
+          </div>
+
+          <button className="import-button" type="button" disabled>
+            Importation bientôt disponible
+          </button>
+        </aside>
       </section>
     </main>
   );

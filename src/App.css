@@ -1,26 +1,50 @@
 .home {
-  max-width: 960px;
+  width: min(100%, 1120px);
   margin-inline: auto;
-  padding: 48px 24px;
+  padding: 32px 20px 64px;
 }
 
 .home-header {
-  max-width: 640px;
-  margin-bottom: 48px;
+  display: grid;
+  gap: 28px;
+  margin-bottom: 40px;
+}
+
+.home-header .brand {
+  margin: 0;
+}
+
+.home-introduction {
+  max-width: 680px;
+}
+
+.home-eyebrow,
+.section-heading > p,
+.import-label {
+  color: var(--color-primary);
+  font-size: 0.875rem;
+  font-weight: 700;
 }
 
 .home-header h1 {
-  margin-bottom: 20px;
-  font-size: clamp(2rem, 6vw, 3.5rem);
+  max-width: 650px;
+  margin-block: 10px 16px;
+  font-size: clamp(2.25rem, 10vw, 4.5rem);
+  letter-spacing: -0.04em;
 }
 
-.home-header > p:last-child {
+.home-tagline {
+  max-width: 580px;
   color: var(--color-muted);
   font-size: 1.125rem;
 }
 
-.home h2 {
-  margin-bottom: 24px;
+.section-heading {
+  margin-bottom: 20px;
+}
+
+.section-heading h2 {
+  margin-top: 6px;
   font-size: clamp(1.4rem, 4vw, 1.8rem);
 }
 
@@ -30,6 +54,7 @@
   border: 1px solid var(--color-border);
   border-radius: 24px;
   background-color: #fffdf9;
+  box-shadow: 0 18px 60px rgb(104 58 38 / 8%);
 }
 
 .recipe-image {
@@ -39,7 +64,7 @@
 }
 
 .recipe-content {
-  padding: 24px;
+  padding: 24px 20px;
 }
 
 .recipe-country {
@@ -88,8 +113,7 @@
 }
 
 .recipe-actions {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   gap: 12px;
   margin-top: 24px;
 }
@@ -110,7 +134,7 @@
 
 /* Ingredients */
 .recipe-ingredients {
-  padding: 24px;
+  padding: 24px 20px;
   border-top: 1px solid var(--color-border);
 }
 
@@ -139,6 +163,50 @@
 
 .ingredient-group li + li {
   margin-top: 6px;
+}
+
+/* Future recipe import */
+.import-preview {
+  display: grid;
+  gap: 18px;
+  margin-top: 24px;
+  padding: 24px 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  background: linear-gradient(135deg, #fffdf9, #fce8df);
+}
+
+.import-preview h2 {
+  margin-block: 4px 8px;
+  font-size: clamp(1.35rem, 5vw, 1.75rem);
+}
+
+.import-preview div > p:last-child {
+  color: var(--color-muted);
+}
+
+.import-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.import-button {
+  width: fit-content;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 999px;
+  background-color: #ead8ce;
+  color: var(--color-muted);
+  font: inherit;
+  font-weight: 600;
+  cursor: not-allowed;
 }
 
 /* Cooking screen header */
@@ -193,6 +261,14 @@
 
 /* Two columns when space permits */
 @media (min-width: 760px) {
+  .home {
+    padding: 56px 32px 80px;
+  }
+
+  .home-header {
+    margin-bottom: 56px;
+  }
+
   .recipe-card {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -213,5 +289,11 @@
 
   .ingredient-groups {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .import-preview {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    padding: 28px;
   }
 }
