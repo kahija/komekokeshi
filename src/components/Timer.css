@@ -10,3 +10,8 @@
   font-weight: 700;
   font-variant-numeric: tabular-nums;
 }
+
+.timer .step-navigation {
+  margin-top: 12px;
+  gap: 12px;
+}
