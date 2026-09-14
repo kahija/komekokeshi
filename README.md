@@ -1,75 +1,51 @@
-# React + TypeScript + Vite
+# KomeKokeshi
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A guided cooking application with an illustrated Kokeshi companion.
 
-Currently, two official plugins are available:
+KomeKokeshi is an in-progress front-end portfolio project. The current prototype guides the user through a homemade chicken ramen recipe, from preparation to serving.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Current features
 
-## React Compiler
+- Responsive interface for mobile and desktop.
+- Recipe overview with preparation times.
+- Ingredients grouped by preparation.
+- Step-by-step cooking mode.
+- Optional details for longer instructions.
+- Cooking timers with start, pause and reset actions.
+- Local persistence for cooking progress and timers.
+- Illustrated Kokeshi visual identity.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Coming next
 
-## Expanding the ESLint configuration
+- Kokeshi animations based on cooking actions.
+- Character expressions and completion reactions.
+- Country-inspired outfits.
+- Manual recipe creation.
+- Recipe import from text, links and photos.
+- Language detection and translation.
+- User accounts and cloud storage.
+- Android and iOS distribution.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tech stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- React
+- TypeScript
+- Vite
+- CSS
+- ESLint
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Run locally
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+git clone https://github.com/kahija/komekokeshi.git
+cd komekokeshi
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+## Quality checks
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm run lint
+npm run build
 ```
