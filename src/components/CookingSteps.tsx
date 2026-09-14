@@ -88,6 +88,14 @@ export function CookingSteps({ recipeId, steps }: CookingStepsProps) {
   }
 
   function handleRestart() {
+    try {
+      for (const step of steps) {
+        localStorage.removeItem(`komekokeshi:timer:${recipeId}:${step.id}`);
+      }
+    } catch {
+      // Restart remains available when browser storage is unavailable.
+    }
+
     setCurrentStepIndex(0);
     setIsRecipeComplete(false);
   }
@@ -138,7 +146,8 @@ export function CookingSteps({ recipeId, steps }: CookingStepsProps) {
 
       {!isRecipeComplete && currentStep.durationSeconds !== undefined && (
         <Timer
-          key={currentStep.id}
+          key={`${recipeId}:${currentStep.id}`}
+          storageKey={`komekokeshi:timer:${recipeId}:${currentStep.id}`}
           durationSeconds={currentStep.durationSeconds}
         />
       )}

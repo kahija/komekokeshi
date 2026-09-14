@@ -2,44 +2,118 @@ import { useEffect, useState } from "react";
 import "./Timer.css";
 
 type TimerProps = {
+  storageKey: string;
   durationSeconds: number;
 };
 
-export function Timer({ durationSeconds }: TimerProps) {
-  const [remainingSeconds, setRemainingSeconds] = useState(durationSeconds);
-  const [endsAt, setEndsAt] = useState<number | null>(null);
+type TimerState = {
+  durationSeconds: number;
+  remainingSeconds: number;
+  endsAt: number | null;
+};
 
-  const isRunning = endsAt !== null;
+function readTimer(storageKey: string, durationSeconds: number): TimerState {
+  const initialState: TimerState = {
+    durationSeconds,
+    remainingSeconds: durationSeconds,
+    endsAt: null,
+  };
+
+  try {
+    const storedValue = localStorage.getItem(storageKey);
+
+    if (!storedValue) return initialState;
+
+    const saved = JSON.parse(storedValue);
+
+    if (
+      saved === null ||
+      typeof saved !== "object" ||
+      saved.durationSeconds !== durationSeconds ||
+      !Number.isInteger(saved.remainingSeconds) ||
+      saved.remainingSeconds < 0 ||
+      saved.remainingSeconds > durationSeconds ||
+      (saved.endsAt !== null &&
+        (!Number.isFinite(saved.endsAt) ||
+          saved.endsAt <= 0 ||
+          saved.endsAt > Date.now() + durationSeconds * 1000))
+    ) {
+      return initialState;
+    }
+
+    return {
+      durationSeconds,
+      remainingSeconds: saved.remainingSeconds,
+      endsAt: saved.endsAt,
+    };
+  } catch {
+    return initialState;
+  }
+}
+
+export function Timer({ storageKey, durationSeconds }: TimerProps) {
+  const [timer, setTimer] = useState(() =>
+    readTimer(storageKey, durationSeconds),
+  );
+  const [now, setNow] = useState(() => Date.now());
+
+  const remainingSeconds =
+    timer.endsAt === null
+      ? timer.remainingSeconds
+      : Math.max(0, Math.ceil((timer.endsAt - now) / 1000));
+
   const isFinished = remainingSeconds === 0;
+  const isRunning = timer.endsAt !== null && !isFinished;
 
   useEffect(() => {
-    if (endsAt === null) return;
+    if (!isRunning) return;
 
     const intervalId = window.setInterval(() => {
-      const secondsLeft = Math.max(0, Math.ceil((endsAt - Date.now()) / 1000));
-
-      setRemainingSeconds(secondsLeft);
-
-      if (secondsLeft === 0) {
-        setEndsAt(null);
-      }
+      setNow(Date.now());
     }, 250);
 
     return () => window.clearInterval(intervalId);
-  }, [endsAt]);
+  }, [isRunning]);
+
+  function saveTimer(nextTimer: TimerState) {
+    setTimer(nextTimer);
+
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(nextTimer));
+    } catch {
+      // The timer still works when browser storage is unavailable.
+    }
+  }
 
   function handleToggle() {
-    if (endsAt !== null) {
-      setRemainingSeconds(Math.max(0, Math.ceil((endsAt - Date.now()) / 1000)));
-      setEndsAt(null);
-    } else if (!isFinished) {
-      setEndsAt(Date.now() + remainingSeconds * 1000);
+    const currentTime = Date.now();
+    setNow(currentTime);
+
+    if (timer.endsAt !== null) {
+      saveTimer({
+        durationSeconds,
+        remainingSeconds: Math.max(
+          0,
+          Math.ceil((timer.endsAt - currentTime) / 1000),
+        ),
+        endsAt: null,
+      });
+    } else if (timer.remainingSeconds > 0) {
+      saveTimer({
+        ...timer,
+        endsAt: currentTime + timer.remainingSeconds * 1000,
+      });
     }
   }
 
   function handleReset() {
-    setEndsAt(null);
-    setRemainingSeconds(durationSeconds);
+    setNow(Date.now());
+
+    saveTimer({
+      durationSeconds,
+      remainingSeconds: durationSeconds,
+      endsAt: null,
+    });
   }
 
   const minutes = Math.floor(remainingSeconds / 60);
@@ -51,6 +125,7 @@ export function Timer({ durationSeconds }: TimerProps) {
   return (
     <div className="timer">
       <p>Minuteur</p>
+
       <p role="timer" aria-label="Temps restant">
         {formattedTime}
       </p>
