@@ -6,17 +6,36 @@
   background-color: #fffdf9;
 }
 
+.cooking > h2 {
+  margin-bottom: 20px;
+}
+
 .cooking-instruction {
   display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  align-items: center;
   gap: 12px;
   padding: 20px;
   border-radius: 16px;
   background-color: #fce8df;
 }
 
-.cooking-instruction > p:first-child {
-  color: var(--color-primary);
-  font-weight: 700;
+.cooking-step-number {
+  display: grid;
+  place-content: center;
+  width: 72px;
+  min-height: 96px;
+  border-radius: 999px;
+  background-color: #f8d4ca;
+  color: var(--color-text);
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.cooking-step-number strong {
+  font-size: 2rem;
+  line-height: 1.2;
 }
 
 .cooking-instruction-text {
@@ -32,6 +51,7 @@
 
 .cooking-step-details {
   font-size: 1rem;
+  grid-column: 1 / -1;
 }
 
 .cooking-step-details summary {
@@ -82,6 +102,22 @@
   .cooking,
   .cooking-instruction {
     padding: 16px;
+  }
+  .cooking-instruction {
+    grid-template-columns: 1fr;
+  }
+
+  .cooking-step-number {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: fit-content;
+    min-height: auto;
+    padding: 8px 14px;
+  }
+
+  .cooking-step-number strong {
+    font-size: 1.125rem;
   }
 }
 .cooking-scene {

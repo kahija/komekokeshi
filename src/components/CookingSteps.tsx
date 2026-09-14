@@ -122,8 +122,10 @@ export function CookingSteps({ recipeId, steps }: CookingStepsProps) {
           aria-live="polite"
           aria-atomic="true"
         >
-          <p>
-            Étape {currentStepIndex + 1} sur {steps.length}
+          <p className="cooking-step-number">
+            <span>Étape</span>
+            <strong>{currentStepIndex + 1}</strong>
+            <span>sur {steps.length}</span>
           </p>
           <p className="cooking-instruction-text">{currentStep.instruction}</p>
 
