@@ -112,7 +112,7 @@ export function CookingSteps({ recipeId, steps }: CookingStepsProps) {
       />
 
       {isRecipeComplete ? (
-        <div role="status">
+        <div className="cooking-complete" role="status">
           <h3>Recette terminée !</h3>
           <p>Ton plat est prêt. Bon appétit !</p>
         </div>
