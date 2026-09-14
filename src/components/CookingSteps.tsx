@@ -138,13 +138,20 @@ export function CookingSteps({ recipeId, steps }: CookingStepsProps) {
         </div>
       )}
 
-      <img
-        className="cooking-scene"
-        src={kokeshiKitchen}
-        alt="La Kokeshi t’accompagne dans sa cuisine japonaise."
-        width={1448}
-        height={1086}
-      />
+      <div className="cooking-scene-wrapper">
+        <img
+          className="cooking-scene"
+          src={kokeshiKitchen}
+          alt="La Kokeshi t’accompagne dans sa cuisine japonaise."
+          width={1448}
+          height={1086}
+        />
+        {isRecipeComplete && (
+          <span className="cooking-sparkle" aria-hidden="true">
+            ✦
+          </span>
+        )}
+      </div>
 
       {!isRecipeComplete && currentStep.durationSeconds !== undefined && (
         <Timer
