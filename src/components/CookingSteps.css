@@ -154,8 +154,8 @@
 
 .cooking-sparkle {
   position: absolute;
-  left: 56%;
-  top: 49%;
+  left: 55%;
+  top: 47%;
   transform: translate(-50%, -50%);
   color: #fff9db;
   font-size: clamp(1.25rem, 4vw, 2rem);
