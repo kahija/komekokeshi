@@ -1,8 +1,26 @@
-# KomeKokeshi
+<p align="center">
+  <img src="src/assets/kokeshi-head.png" alt="KomeKokeshi mascot" width="112" />
+</p>
 
-A guided cooking application with an illustrated Kokeshi companion.
+<h1 align="center">KomeKokeshi</h1>
+
+<p align="center">
+  Cook around the world with an illustrated Kokeshi companion.
+</p>
+
+<p align="center">
+  <strong>React · TypeScript · Vite · CSS</strong>
+</p>
 
 KomeKokeshi is an in-progress front-end portfolio project. The current prototype guides the user through a homemade chicken ramen recipe, from preparation to serving.
+
+<p align="center">
+  <img
+    src="src/assets/kokeshi-kitchen.png"
+    alt="KomeKokeshi in a Japanese kitchen"
+    width="760"
+  />
+</p>
 
 ## Current features
 
@@ -49,3 +67,11 @@ npm run dev
 npm run lint
 npm run build
 ```
+
+## Rights and usage
+
+This repository is shared publicly for portfolio review. Its original source code, project name and visual assets are not offered for reuse, redistribution or commercial use. See [LICENSE](LICENSE) for details.
+
+Some Kokeshi illustrations were created with generative AI under the project's original creative direction. Third-party packages remain subject to their respective licenses.
+
+Copyright © 2026 Kahina Ouarezki. All rights reserved.
