@@ -290,3 +290,7 @@
   .cooking-instruction-text { font-size: 1.125rem; }
   .cooking-finished { max-width: 800px; margin-inline: auto; }
 }
+
+.cooking-main { scroll-margin-top: 20px; }
+.cooking-main:focus { outline: none; }
+.cooking-main:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 5px; border-radius: 20px; }

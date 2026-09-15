@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { RecipeIngredient, RecipeStep } from "../data/recipes";
 import kokeshiCook from "../assets/kokeshi-cook.webp";
 import kokeshiMix from "../assets/kokeshi-mix.webp";
@@ -54,6 +54,8 @@ function readProgress(storageKey: string, stepCount: number): CookingProgress {
 }
 
 export function CookingSteps({ recipeId, steps, ingredients }: CookingStepsProps) {
+  const instructionRef = useRef<HTMLDivElement>(null);
+  const shouldFocusStep = useRef(false);
   const storageKey = `komekokeshi:progress:${recipeId}`;
 
   const [savedProgress] = useState(() =>
@@ -81,6 +83,13 @@ export function CookingSteps({ recipeId, steps, ingredients }: CookingStepsProps
     }
   }, [storageKey, currentStepIndex, isRecipeComplete]);
 
+  useEffect(() => {
+    if (!shouldFocusStep.current) return;
+    shouldFocusStep.current = false;
+    instructionRef.current?.focus({ preventScroll: true });
+    instructionRef.current?.scrollIntoView({ block: "start", behavior: "instant" });
+  }, [currentStepIndex, isRecipeComplete]);
+
   const currentStep = steps[currentStepIndex];
   const scene = isRecipeComplete || currentStep.action === "serve"
     ? { src: kokeshiComplete, alt: "La Kokeshi présente le ramen au poulet terminé." }
@@ -96,7 +105,13 @@ export function CookingSteps({ recipeId, steps, ingredients }: CookingStepsProps
   );
   const isLastStep = currentStepIndex === steps.length - 1;
 
+  function handlePreviousStep() {
+    shouldFocusStep.current = true;
+    setCurrentStepIndex((index) => Math.max(0, index - 1));
+  }
+
   function handleNextStep() {
+    shouldFocusStep.current = true;
     if (isLastStep) {
       setIsRecipeComplete(true);
     } else {
@@ -105,6 +120,7 @@ export function CookingSteps({ recipeId, steps, ingredients }: CookingStepsProps
   }
 
   function handleRestart() {
+    shouldFocusStep.current = true;
     try {
       for (const step of steps) {
         localStorage.removeItem(`komekokeshi:timer:${recipeId}:${step.id}`);
@@ -131,7 +147,7 @@ export function CookingSteps({ recipeId, steps, ingredients }: CookingStepsProps
         value={isRecipeComplete ? steps.length : currentStepIndex}
       />
 
-      <div className="cooking-main">
+      <div className="cooking-main" ref={instructionRef} tabIndex={-1}>
         {isRecipeComplete ? (
           <div className="cooking-complete" role="status">
             <h3>Recette terminée !</h3>
@@ -169,7 +185,7 @@ export function CookingSteps({ recipeId, steps, ingredients }: CookingStepsProps
 
       </div>
 
-      {!isRecipeComplete && (
+      {!isRecipeComplete && (stepIngredients.length > 0 || currentStep.durationSeconds !== undefined || currentStep.tip || currentStep.details) && (
         <div className="cooking-support">
           {stepIngredients.length > 0 && (
             <aside className="step-ingredients">
@@ -216,7 +232,7 @@ export function CookingSteps({ recipeId, steps, ingredients }: CookingStepsProps
             <button
               type="button"
               disabled={currentStepIndex === 0}
-              onClick={() => setCurrentStepIndex((index) => index - 1)}
+              onClick={handlePreviousStep}
             >
               Précédent
             </button>
