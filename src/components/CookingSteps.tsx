@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { RecipeStep } from "../data/recipes";
 import { Timer } from "./Timer";
 import kokeshiKitchen from "../assets/kokeshi-kitchen.png";
+import kokeshiComplete from "../assets/kokeshi-complete-w.png";
 import "./CookingSteps.css";
 
 type CookingStepsProps = {
@@ -141,8 +142,12 @@ export function CookingSteps({ recipeId, steps }: CookingStepsProps) {
       <div className="cooking-scene-wrapper">
         <img
           className="cooking-scene"
-          src={kokeshiKitchen}
-          alt="La Kokeshi t’accompagne dans sa cuisine japonaise."
+          src={isRecipeComplete ? kokeshiComplete : kokeshiKitchen}
+          alt={
+            isRecipeComplete
+              ? "La Kokeshi présente le ramen au poulet terminé."
+              : "La Kokeshi t’accompagne dans sa cuisine japonaise."
+          }
           width={1448}
           height={1086}
         />
