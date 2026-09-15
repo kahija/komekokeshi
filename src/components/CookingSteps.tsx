@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import type { RecipeIngredient, RecipeStep } from "../data/recipes";
-import { IngredientList } from "./IngredientList";
 import kokeshiCook from "../assets/kokeshi-cook.webp";
 import kokeshiMix from "../assets/kokeshi-mix.webp";
 import kokeshiCut from "../assets/kokeshi-cut.webp";
@@ -132,39 +131,42 @@ export function CookingSteps({ recipeId, steps, ingredients }: CookingStepsProps
         value={isRecipeComplete ? steps.length : currentStepIndex}
       />
 
-      {isRecipeComplete ? (
-        <div className="cooking-complete" role="status">
-          <h3>Recette terminée !</h3>
-          <p>Ton plat est prêt. Bon appétit !</p>
-        </div>
-      ) : (
-        <div
-          className="cooking-instruction"
-          aria-live="polite"
-          aria-atomic="true"
-        >
-          <p className="cooking-step-number">
-            <span>Étape</span>
-            <strong>{currentStepIndex + 1}</strong>
-            <span>sur {steps.length}</span>
-          </p>
-          <p className="cooking-instruction-text">{currentStep.instruction}</p>
-        </div>
-      )}
-
-      <div className="cooking-scene-wrapper">
-        <img
-          className="cooking-scene"
-          src={scene.src}
-          alt={scene.alt}
-          width={1448}
-          height={1086}
-        />
-        {isRecipeComplete && (
-          <span className="cooking-sparkle" aria-hidden="true">
-            ✦
-          </span>
+      <div className="cooking-main">
+        {isRecipeComplete ? (
+          <div className="cooking-complete" role="status">
+            <h3>Recette terminée !</h3>
+            <p>Ton plat est prêt. Bon appétit !</p>
+          </div>
+        ) : (
+          <div
+            className="cooking-instruction"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            <p className="cooking-step-number">
+              <span>Étape</span>
+              <strong>{currentStepIndex + 1}</strong>
+              <span>sur {steps.length}</span>
+            </p>
+            <p className="cooking-instruction-text">{currentStep.instruction}</p>
+          </div>
         )}
+
+        <div className="cooking-scene-wrapper">
+          <img
+            className="cooking-scene"
+            src={scene.src}
+            alt={scene.alt}
+            width={1448}
+            height={1086}
+          />
+          {isRecipeComplete && (
+            <span className="cooking-sparkle" aria-hidden="true">
+              ✦
+            </span>
+          )}
+        </div>
+
       </div>
 
       {!isRecipeComplete && (
@@ -182,10 +184,6 @@ export function CookingSteps({ recipeId, steps, ingredients }: CookingStepsProps
               </ul>
             </aside>
           )}
-          <details className="cooking-ingredients">
-            <summary>Ingrédients de la recette</summary>
-            <IngredientList ingredients={ingredients} />
-          </details>
           {currentStep.durationSeconds !== undefined && (
             <Timer
               key={`${recipeId}:${currentStep.id}`}
