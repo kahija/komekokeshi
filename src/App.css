@@ -6,8 +6,8 @@
 
 .home-header {
   display: grid;
-  gap: 28px;
-  margin-bottom: 40px;
+  gap: 24px;
+  margin-bottom: 36px;
 }
 
 .home-header .brand {
@@ -29,8 +29,8 @@
 .home-header h1 {
   max-width: 650px;
   margin-block: 10px 16px;
-  font-size: clamp(2.25rem, 10vw, 4.5rem);
-  letter-spacing: -0.04em;
+  font-size: clamp(2rem, 7vw, 3.25rem);
+  letter-spacing: -0.035em;
 }
 
 .home-tagline {
@@ -262,11 +262,11 @@
 /* Two columns when space permits */
 @media (min-width: 760px) {
   .home {
-    padding: 56px 32px 80px;
+    padding: 40px 32px 64px;
   }
 
   .home-header {
-    margin-bottom: 56px;
+    margin-bottom: 36px;
   }
 
   .recipe-card {
@@ -302,4 +302,46 @@
   .recipe-actions {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+
+/* Keep the brand above the introduction on every screen. */
+.home-header {
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.recipe-country {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: #fce8df;
+}
+
+.recipe-content {
+  padding: clamp(20px, 3vw, 32px);
+}
+
+.recipe-planning dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.recipe-planning dl > div + div {
+  margin-top: 0;
+}
+
+.recipe-actions button {
+  min-height: 48px;
+}
+
+@media (min-width: 760px) {
+  .home.cooking-page {
+    padding-block: 24px 48px;
+  }
+}
+
+@media (max-width: 360px) {
+  .home { padding-inline: 12px; }
+  .recipe-planning dl { grid-template-columns: 1fr; gap: 8px; }
 }
