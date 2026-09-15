@@ -3,6 +3,7 @@ export type RecipeStep = {
   instruction: string;
   details?: string;
   tip?: string;
+  ingredientIds?: string[];
   action: "cut" | "mix" | "pour" | "cook" | "cool" | "wait" | "serve";
   durationSeconds?: number;
 };
@@ -206,6 +207,7 @@ export const ramenRecipe: Recipe = {
     },
     {
       id: "prepare-stock-aromatics",
+      ingredientIds: ["stock-ginger", "stock-spring-onions", "stock-garlic"],
       tip: "Les aromates du bouillon se coupent en grands morceaux ; garde la découpe fine pour le dressage.",
       instruction:
         "Coupe les 15 g de gingembre du bouillon en tranches et les 2 oignons nouveaux en grands morceaux. Écrase légèrement la gousse d’ail.",
@@ -213,6 +215,7 @@ export const ramenRecipe: Recipe = {
     },
     {
       id: "start-stock",
+      ingredientIds: ["stock-chicken", "stock-water"],
       instruction:
         "Place les carcasses et cous de poulet dans une marmite avec 2 litres d’eau. Porte doucement à frémissement. Retire la mousse en surface, puis ajoute les aromates du bouillon. Ne sale pas encore.",
       action: "cook",
@@ -227,6 +230,7 @@ export const ramenRecipe: Recipe = {
     },
     {
       id: "prepare-egg-marinade",
+      ingredientIds: ["egg-soy-sauce", "egg-water", "egg-sugar"],
       tip: "Le sucre doit être dissous avant de laisser refroidir la marinade.",
       instruction:
         "Mélange 30 ml de sauce soja sans alcool, 60 ml d’eau et 1 cuillère à café de sucre dans une petite casserole. Chauffe en remuant jusqu’à dissolution du sucre. Verse dans un petit récipient propre et laisse refroidir complètement.",
@@ -234,6 +238,7 @@ export const ramenRecipe: Recipe = {
     },
     {
       id: "cook-eggs",
+      ingredientIds: ["eggs"],
       tip: "Prépare le bol d’eau glacée avant la fin du minuteur : la prochaine étape commence aussitôt.",
       instruction:
         "Porte une casserole d’eau à ébullition. Plonge délicatement les 2 gros œufs sortant du réfrigérateur, puis démarre le minuteur. Maintiens une légère ébullition pendant 7 minutes pour obtenir un jaune crémeux. Le résultat varie avec le calibre des œufs.",
@@ -242,6 +247,7 @@ export const ramenRecipe: Recipe = {
     },
     {
       id: "cool-eggs",
+      ingredientIds: ["egg-ice"],
       instruction:
         "Transfère immédiatement les œufs dans le bol d’eau glacée. Laisse-les refroidir pendant 15 minutes, puis écale-les délicatement.",
       action: "cool",
@@ -256,18 +262,21 @@ export const ramenRecipe: Recipe = {
     },
     {
       id: "prepare-chicken",
+      ingredientIds: ["chicken-thighs", "chicken-ginger", "chicken-spring-onion"],
       instruction:
         "Coupe les 10 g de gingembre du poulet en tranches et son oignon nouveau en tronçons. Déplie les hauts de cuisse désossés pour une cuisson régulière, sans les rouler. Après manipulation du poulet cru, lave tes mains et nettoie les ustensiles et le plan de travail.",
       action: "cut",
     },
     {
       id: "brown-chicken",
+      ingredientIds: ["chicken-oil"],
       instruction:
         "Chauffe 1 cuillère à café d’huile dans une petite casserole ou sauteuse. Dépose le poulet côté peau et fais dorer environ 5 minutes à feu moyen, puis retourne et fais dorer l’autre face environ 2 minutes.",
       action: "cook",
     },
     {
       id: "braise-chicken",
+      ingredientIds: ["chicken-soy-sauce", "chicken-water", "chicken-sugar"],
       instruction:
         "Ajoute 40 ml de sauce soja sans alcool, 200 ml d’eau, 2 cuillères à café de sucre, le gingembre et l’oignon préparés. Fais mijoter à couvert pendant environ 15 à 20 minutes en retournant à mi-cuisson. Vérifie au thermomètre que la partie la plus épaisse atteint 74 °C ; prolonge si nécessaire. Ajoute un peu d’eau si la sauce réduit trop.",
       action: "cook",
@@ -293,18 +302,21 @@ export const ramenRecipe: Recipe = {
     },
     {
       id: "prepare-tare",
+      ingredientIds: ["tare-soy-sauce", "tare-water", "tare-sugar"],
       instruction:
         "Pour le tare, mélange les 40 ml de sauce soja sans alcool, les 20 ml d’eau et la demi-cuillère à café de sucre du groupe Assaisonnement. Chauffe doucement pour dissoudre le sucre, puis réserve.",
       action: "mix",
     },
     {
       id: "prepare-aromatic-oil",
+      ingredientIds: ["aromatic-oil", "oil-spring-onion", "oil-ginger"],
       instruction:
         "Dans une petite casserole, chauffe à feu doux la cuillère à soupe d’huile avec le tronçon d’oignon et les 2 tranches de gingembre du groupe Huile aromatique. Lorsque les aromates commencent à dorer et à parfumer l’huile, retire du feu et filtre.",
       action: "cook",
     },
     {
       id: "prepare-toppings",
+      ingredientIds: ["topping-spring-onion", "nori"],
       tip: "Garde aussi la partie verte de l’oignon pour le dressage.",
       instruction:
         "Émince l’oignon nouveau du dressage. Retire les œufs de leur marinade et coupe-les en deux. Tranche le poulet avec des ustensiles propres et prépare les rectangles de nori.",
@@ -318,6 +330,7 @@ export const ramenRecipe: Recipe = {
     },
     {
       id: "cook-noodles",
+      ingredientIds: ["noodles"],
       tip: "La durée dépend des nouilles choisies : garde leur emballage à portée de main.",
       instruction:
         "Réchauffe les bols avec de l’eau chaude puis vide-les. Fais cuire les nouilles dans une casserole d’eau bouillante séparée, selon la durée indiquée sur leur emballage. Égoutte-les dès qu’elles sont prêtes.",

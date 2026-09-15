@@ -257,3 +257,51 @@
   .cooking-ingredients, .kokeshi-tip, .cooking-step-details { padding: 16px; }
   .cooking > .step-navigation button { padding-inline: 12px; font-size: .875rem; }
 }
+
+/* The illustration and instruction form one scene, as in the mockup. */
+.cooking-instruction {
+  border-radius: 20px 20px 0 0;
+}
+
+.cooking-scene-wrapper {
+  max-width: none;
+  margin-top: 0;
+}
+
+.cooking-scene {
+  border-radius: 0 0 20px 20px;
+}
+
+.step-ingredients {
+  padding: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  background: #fff8ee;
+}
+
+.step-ingredients h3 { font-size: 1.125rem; }
+.step-ingredients ul { margin: 12px 0 0; padding: 0; list-style: none; }
+.step-ingredients li { display: grid; gap: 2px; padding-block: 8px; }
+.step-ingredients li + li { border-top: 1px solid var(--color-border); }
+.step-ingredients strong { color: var(--color-primary); font-size: .875rem; }
+.cooking-ingredients { order: 3; }
+.cooking-support { grid-template-columns: 1fr; }
+.cooking-finished .cooking-scene-wrapper { margin-top: 20px; }
+.cooking-finished .cooking-scene { border-radius: 20px; }
+
+@media (min-width: 960px) {
+  .cooking:not(.cooking-finished) {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr);
+    column-gap: 24px;
+    align-items: start;
+  }
+  .cooking-section-heading, .cooking-progress, .cooking > .step-navigation {
+    grid-column: 1 / -1;
+  }
+  .cooking-instruction { grid-column: 1; grid-row: 3; }
+  .cooking-scene-wrapper { grid-column: 1; grid-row: 4; }
+  .cooking-support { grid-column: 2; grid-row: 3 / 5; margin-top: 0; }
+  .cooking-instruction-text { font-size: 1.125rem; }
+  .cooking-finished { max-width: 800px; margin-inline: auto; }
+}
