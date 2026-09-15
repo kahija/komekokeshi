@@ -2,6 +2,7 @@ export type RecipeStep = {
   id: string;
   instruction: string;
   details?: string;
+  tip?: string;
   action: "cut" | "mix" | "pour" | "cook" | "cool" | "wait" | "serve";
   durationSeconds?: number;
 };
@@ -205,6 +206,7 @@ export const ramenRecipe: Recipe = {
     },
     {
       id: "prepare-stock-aromatics",
+      tip: "Les aromates du bouillon se coupent en grands morceaux ; garde la découpe fine pour le dressage.",
       instruction:
         "Coupe les 15 g de gingembre du bouillon en tranches et les 2 oignons nouveaux en grands morceaux. Écrase légèrement la gousse d’ail.",
       action: "cut",
@@ -225,12 +227,14 @@ export const ramenRecipe: Recipe = {
     },
     {
       id: "prepare-egg-marinade",
+      tip: "Le sucre doit être dissous avant de laisser refroidir la marinade.",
       instruction:
         "Mélange 30 ml de sauce soja sans alcool, 60 ml d’eau et 1 cuillère à café de sucre dans une petite casserole. Chauffe en remuant jusqu’à dissolution du sucre. Verse dans un petit récipient propre et laisse refroidir complètement.",
       action: "mix",
     },
     {
       id: "cook-eggs",
+      tip: "Prépare le bol d’eau glacée avant la fin du minuteur : la prochaine étape commence aussitôt.",
       instruction:
         "Porte une casserole d’eau à ébullition. Plonge délicatement les 2 gros œufs sortant du réfrigérateur, puis démarre le minuteur. Maintiens une légère ébullition pendant 7 minutes pour obtenir un jaune crémeux. Le résultat varie avec le calibre des œufs.",
       action: "cook",
@@ -245,6 +249,7 @@ export const ramenRecipe: Recipe = {
     },
     {
       id: "marinate-eggs",
+      tip: "Choisis un récipient étroit : la marinade entourera mieux les œufs.",
       instruction:
         "Place les œufs dans leur marinade complètement froide, dans un récipient suffisamment étroit pour bien les entourer. Couvre et laisse mariner 8 à 12 heures au réfrigérateur. Retourne-les si une partie reste découverte. Poursuis maintenant avec le poulet.",
       action: "wait",
@@ -281,6 +286,7 @@ export const ramenRecipe: Recipe = {
     },
     {
       id: "resume-next-day",
+      tip: "Dispose les bols et les garnitures avant de lancer la cuisson des nouilles.",
       instruction:
         "Le lendemain — Les œufs doivent avoir mariné au moins 8 heures. Sors les préparations uniquement lorsque tu es prêt à les utiliser. Prépare deux grands bols et une casserole d’eau pour les nouilles.",
       action: "wait",
@@ -299,6 +305,7 @@ export const ramenRecipe: Recipe = {
     },
     {
       id: "prepare-toppings",
+      tip: "Garde aussi la partie verte de l’oignon pour le dressage.",
       instruction:
         "Émince l’oignon nouveau du dressage. Retire les œufs de leur marinade et coupe-les en deux. Tranche le poulet avec des ustensiles propres et prépare les rectangles de nori.",
       action: "cut",
@@ -311,12 +318,14 @@ export const ramenRecipe: Recipe = {
     },
     {
       id: "cook-noodles",
+      tip: "La durée dépend des nouilles choisies : garde leur emballage à portée de main.",
       instruction:
         "Réchauffe les bols avec de l’eau chaude puis vide-les. Fais cuire les nouilles dans une casserole d’eau bouillante séparée, selon la durée indiquée sur leur emballage. Égoutte-les dès qu’elles sont prêtes.",
       action: "cook",
     },
     {
       id: "season-bowls",
+      tip: "Ajoute le tare petit à petit et goûte entre chaque ajout.",
       instruction:
         "Verse 1 cuillère à soupe de tare et la moitié de l’huile aromatique dans chaque bol. Ajoute 400 ml de bouillon et mélange. Goûte et ajoute progressivement du tare si nécessaire : sa quantité dépend de la salinité de ta sauce soja.",
       action: "pour",

@@ -137,8 +137,6 @@ export function CookingSteps({ recipeId, steps, ingredients }: CookingStepsProps
             <span>sur {steps.length}</span>
           </p>
           <p className="cooking-instruction-text">{currentStep.instruction}</p>
-
-
         </div>
       )}
 
@@ -167,16 +165,17 @@ export function CookingSteps({ recipeId, steps, ingredients }: CookingStepsProps
             <summary>Ingrédients de la recette</summary>
             <IngredientList ingredients={ingredients} />
           </details>
-          {currentStep.durationSeconds !== undefined ? (
+          {currentStep.durationSeconds !== undefined && (
             <Timer
               key={`${recipeId}:${currentStep.id}`}
               storageKey={`komekokeshi:timer:${recipeId}:${currentStep.id}`}
               durationSeconds={currentStep.durationSeconds}
             />
-          ) : (
+          )}
+          {currentStep.tip && (
             <aside className="kokeshi-tip">
-              <h3>Le petit mot de Kokeshi</h3>
-              <p>Prends ton temps. Passe à la suite quand tu as terminé ce geste.</p>
+              <h3>Astuce Kokeshi</h3>
+              <p>{currentStep.tip}</p>
             </aside>
           )}
           {currentStep.details && (
