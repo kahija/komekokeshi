@@ -1,5 +1,5 @@
 import "@fontsource/leckerli-one";
-import kokeshiHead from "../assets/kokeshi-head.png";
+import kokeshiHead from "../assets/kokeshi-head.webp";
 import "./Brand.css";
 
 export function Brand() {

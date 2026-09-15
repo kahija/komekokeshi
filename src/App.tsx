@@ -3,7 +3,7 @@ import { ramenRecipe } from "./data/recipes";
 import { CookingSteps } from "./components/CookingSteps";
 import { IngredientList } from "./components/IngredientList";
 import { Brand } from "./components/Brand";
-import kokeshiKitchen from "./assets/kokeshi-kitchen.png";
+import kokeshiKitchen from "./assets/kokeshi-kitchen.webp";
 import "./App.css";
 
 function App() {

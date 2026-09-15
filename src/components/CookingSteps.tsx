@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import type { RecipeIngredient, RecipeStep } from "../data/recipes";
 import { IngredientList } from "./IngredientList";
-import kokeshiCut from "../assets/kokeshi-cut.png";
+import kokeshiCut from "../assets/kokeshi-cut.webp";
 import { Timer } from "./Timer";
-import kokeshiKitchen from "../assets/kokeshi-kitchen.png";
-import kokeshiComplete from "../assets/kokeshi-complete-w.png";
+import kokeshiKitchen from "../assets/kokeshi-kitchen.webp";
+import kokeshiComplete from "../assets/kokeshi-complete-w.webp";
 import "./CookingSteps.css";
 
 type CookingStepsProps = {
