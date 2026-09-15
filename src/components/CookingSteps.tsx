@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import type { RecipeStep } from "../data/recipes";
+import type { RecipeIngredient, RecipeStep } from "../data/recipes";
+import { IngredientList } from "./IngredientList";
+import kokeshiCut from "../assets/kokeshi-cut.png";
 import { Timer } from "./Timer";
 import kokeshiKitchen from "../assets/kokeshi-kitchen.png";
 import kokeshiComplete from "../assets/kokeshi-complete-w.png";
@@ -8,6 +10,7 @@ import "./CookingSteps.css";
 type CookingStepsProps = {
   recipeId: string;
   steps: RecipeStep[];
+  ingredients: RecipeIngredient[];
 };
 
 type CookingProgress = {
@@ -49,7 +52,7 @@ function readProgress(storageKey: string, stepCount: number): CookingProgress {
   }
 }
 
-export function CookingSteps({ recipeId, steps }: CookingStepsProps) {
+export function CookingSteps({ recipeId, steps, ingredients }: CookingStepsProps) {
   const storageKey = `komekokeshi:progress:${recipeId}`;
 
   const [savedProgress] = useState(() =>
@@ -78,6 +81,8 @@ export function CookingSteps({ recipeId, steps }: CookingStepsProps) {
   }, [storageKey, currentStepIndex, isRecipeComplete]);
 
   const currentStep = steps[currentStepIndex];
+  const isCuttingOnions = currentStep.id === "prepare-toppings";
+  const scene = isRecipeComplete ? kokeshiComplete : isCuttingOnions ? kokeshiCut : kokeshiKitchen;
   const isLastStep = currentStepIndex === steps.length - 1;
 
   function handleNextStep() {
@@ -103,7 +108,10 @@ export function CookingSteps({ recipeId, steps }: CookingStepsProps) {
 
   return (
     <section className="cooking" aria-labelledby="cooking-title">
-      <h2 id="cooking-title">Préparation</h2>
+      <div className="cooking-section-heading">
+        <h2 id="cooking-title">{isRecipeComplete ? "À table !" : "En cuisine"}</h2>
+        <p>{isRecipeComplete ? "Toutes les étapes sont terminées" : "Un geste après l’autre"}</p>
+      </div>
 
       <progress
         className="cooking-progress"
@@ -130,23 +138,18 @@ export function CookingSteps({ recipeId, steps }: CookingStepsProps) {
           </p>
           <p className="cooking-instruction-text">{currentStep.instruction}</p>
 
-          {currentStep.details && (
-            <details key={currentStep.id} className="cooking-step-details">
-              <summary>Précisions de l’étape</summary>
-              <p>{currentStep.details}</p>
-            </details>
-          )}
+
         </div>
       )}
 
       <div className="cooking-scene-wrapper">
         <img
           className="cooking-scene"
-          src={isRecipeComplete ? kokeshiComplete : kokeshiKitchen}
+          src={scene}
           alt={
             isRecipeComplete
               ? "La Kokeshi présente le ramen au poulet terminé."
-              : "La Kokeshi t’accompagne dans sa cuisine japonaise."
+              : isCuttingOnions ? "La Kokeshi découpe les oignons nouveaux." : "La Kokeshi t’accompagne dans sa cuisine japonaise."
           }
           width={1448}
           height={1086}
@@ -158,17 +161,36 @@ export function CookingSteps({ recipeId, steps }: CookingStepsProps) {
         )}
       </div>
 
-      {!isRecipeComplete && currentStep.durationSeconds !== undefined && (
-        <Timer
-          key={`${recipeId}:${currentStep.id}`}
-          storageKey={`komekokeshi:timer:${recipeId}:${currentStep.id}`}
-          durationSeconds={currentStep.durationSeconds}
-        />
+      {!isRecipeComplete && (
+        <div className="cooking-support">
+          <details className="cooking-ingredients">
+            <summary>Ingrédients de la recette</summary>
+            <IngredientList ingredients={ingredients} />
+          </details>
+          {currentStep.durationSeconds !== undefined ? (
+            <Timer
+              key={`${recipeId}:${currentStep.id}`}
+              storageKey={`komekokeshi:timer:${recipeId}:${currentStep.id}`}
+              durationSeconds={currentStep.durationSeconds}
+            />
+          ) : (
+            <aside className="kokeshi-tip">
+              <h3>Le petit mot de Kokeshi</h3>
+              <p>Prends ton temps. Passe à la suite quand tu as terminé ce geste.</p>
+            </aside>
+          )}
+          {currentStep.details && (
+            <aside className="cooking-step-details" key={currentStep.id}>
+              <h3>Précisions de l’étape</h3>
+              <p>{currentStep.details}</p>
+            </aside>
+          )}
+        </div>
       )}
 
       <nav className="step-navigation" aria-label="Étapes de préparation">
         {isRecipeComplete ? (
-          <button type="button" onClick={handleRestart}>
+          <button className="step-primary" type="button" onClick={handleRestart}>
             Recommencer
           </button>
         ) : (
@@ -186,7 +208,7 @@ export function CookingSteps({ recipeId, steps }: CookingStepsProps) {
               type="button"
               onClick={handleNextStep}
             >
-              {isLastStep ? "Terminer la recette" : "Suivant"}
+              {isLastStep ? "Terminer la recette" : "Étape suivante"}
             </button>
           </>
         )}

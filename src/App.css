@@ -260,7 +260,7 @@
 }
 
 /* Two columns when space permits */
-@media (min-width: 760px) {
+@media (min-width: 960px) {
   .home {
     padding: 40px 32px 64px;
   }
@@ -335,7 +335,7 @@
   min-height: 48px;
 }
 
-@media (min-width: 760px) {
+@media (min-width: 960px) {
   .home.cooking-page {
     padding-block: 24px 48px;
   }

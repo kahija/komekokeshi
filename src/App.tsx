@@ -1,13 +1,10 @@
 import { useState } from "react";
 import { ramenRecipe } from "./data/recipes";
 import { CookingSteps } from "./components/CookingSteps";
+import { IngredientList } from "./components/IngredientList";
 import { Brand } from "./components/Brand";
 import kokeshiKitchen from "./assets/kokeshi-kitchen.png";
 import "./App.css";
-
-const ingredientGroups = [
-  ...new Set(ramenRecipe.ingredients.map((ingredient) => ingredient.group)),
-];
 
 function App() {
   const [showIngredients, setShowIngredients] = useState(false);
@@ -35,7 +32,7 @@ function App() {
           </div>
         </header>
 
-        <CookingSteps recipeId={ramenRecipe.id} steps={ramenRecipe.steps} />
+        <CookingSteps recipeId={ramenRecipe.id} steps={ramenRecipe.steps} ingredients={ramenRecipe.ingredients} />
       </main>
     );
   }
@@ -130,23 +127,7 @@ function App() {
           >
             <h4>Ingrédients pour {ramenRecipe.servings} personnes</h4>
 
-            <div className="ingredient-groups">
-              {ingredientGroups.map((group) => (
-                <section className="ingredient-group" key={group}>
-                  <h5>{group}</h5>
-
-                  <ul>
-                    {ramenRecipe.ingredients
-                      .filter((ingredient) => ingredient.group === group)
-                      .map((ingredient) => (
-                        <li key={ingredient.id}>
-                          {ingredient.quantity} — {ingredient.name}
-                        </li>
-                      ))}
-                  </ul>
-                </section>
-              ))}
-            </div>
+            <IngredientList ingredients={ramenRecipe.ingredients} />
           </div>
         </article>
 
