@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="src/assets/kokeshi-head.png" alt="KomeKokeshi mascot" width="112" />
+  <img src="src/assets/kokeshi-head.webp" alt="KomeKokeshi mascot" width="112" />
 </p>
 
 <h1 align="center">KomeKokeshi</h1>
@@ -12,11 +12,13 @@
   <strong>React · TypeScript · Vite · CSS</strong>
 </p>
 
+[Try the live demo](https://kahija.github.io/komekokeshi/)
+
 KomeKokeshi is an in-progress front-end portfolio project. The current prototype guides the user through a homemade chicken ramen recipe, from preparation to serving.
 
 <p align="center">
   <img
-    src="src/assets/kokeshi-kitchen.png"
+    src="src/assets/kokeshi-kitchen.webp"
     alt="KomeKokeshi in a Japanese kitchen"
     width="760"
   />
@@ -28,15 +30,16 @@ KomeKokeshi is an in-progress front-end portfolio project. The current prototype
 - Recipe overview with preparation times.
 - Ingredients grouped by preparation.
 - Step-by-step cooking mode.
-- Optional details for longer instructions.
-- Cooking timers with start, pause and reset actions.
-- Local persistence for cooking progress and timers.
-- Illustrated Kokeshi visual identity.
+- Concise step instructions with visible supporting details.
+- Contextual ingredients and Kokeshi tips.
+- Numbered progress and a completion screen.
+- Cooking timers with start, pause, resume and reset actions.
+- Local persistence for cooking progress and timers, with a resume button on the home screen.
+- Original Kokeshi branding and illustrations for mixing, cooking, cutting and serving.
 
 ## Coming next
 
 - Kokeshi animations based on cooking actions.
-- Character expressions and completion reactions.
 - Country-inspired outfits.
 - Manual recipe creation.
 - Recipe import from text, links and photos.
