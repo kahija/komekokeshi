@@ -13,9 +13,10 @@ type CookingStepsProps = {
   recipeId: string;
   steps: RecipeStep[];
   ingredients: RecipeIngredient[];
+  onReturnToRecipe: () => void;
 };
 
-export function CookingSteps({ recipeId, steps, ingredients }: CookingStepsProps) {
+export function CookingSteps({ recipeId, steps, ingredients, onReturnToRecipe }: CookingStepsProps) {
   const instructionRef = useRef<HTMLDivElement>(null);
   const shouldFocusStep = useRef(false);
   const storageKey = `komekokeshi:progress:${recipeId}`;
@@ -66,6 +67,11 @@ export function CookingSteps({ recipeId, steps, ingredients }: CookingStepsProps
     currentStep.ingredientIds?.includes(ingredient.id),
   );
   const isLastStep = currentStepIndex === steps.length - 1;
+  const visibleStepIndices = steps.flatMap((_, index) =>
+    index === 0 || index === steps.length - 1 || Math.abs(index - currentStepIndex) <= 1
+      ? [index]
+      : [],
+  );
 
   function handlePreviousStep() {
     shouldFocusStep.current = true;
@@ -184,11 +190,33 @@ export function CookingSteps({ recipeId, steps, ingredients }: CookingStepsProps
         </div>
       )}
 
+      {!isRecipeComplete && (
+        <ol className="cooking-step-track" aria-label="Progression de la recette">
+          {visibleStepIndices.map((index, position) => (
+            <li key={steps[index].id} className={index < currentStepIndex ? "is-done" : ""}
+              aria-current={index === currentStepIndex ? "step" : undefined}>
+              {position > 0 && index - visibleStepIndices[position - 1] > 1 && (
+                <span className="step-track-gap" aria-hidden="true">…</span>
+              )}
+              <span className="step-track-dot" aria-hidden="true">
+                {index < currentStepIndex ? "✓" : index + 1}
+              </span>
+              <span className="step-track-label">
+                Étape {index + 1}{index < currentStepIndex ? ", terminée" : index === currentStepIndex ? ", en cours" : ""}
+              </span>
+            </li>
+          ))}
+        </ol>
+      )}
+
       <nav className="step-navigation" aria-label="Étapes de préparation">
         {isRecipeComplete ? (
-          <button className="step-primary" type="button" onClick={handleRestart}>
-            Recommencer
-          </button>
+          <>
+            <button type="button" onClick={onReturnToRecipe}>Voir ma recette</button>
+            <button className="step-primary" type="button" onClick={handleRestart}>
+              Recommencer
+            </button>
+          </>
         ) : (
           <>
             <button

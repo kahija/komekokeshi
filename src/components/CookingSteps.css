@@ -294,3 +294,68 @@
 .cooking-main { scroll-margin-top: 20px; }
 .cooking-main:focus { outline: none; }
 .cooking-main:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 5px; border-radius: 20px; }
+
+/* A compact numbered path keeps the 21-step recipe readable on small screens. */
+.cooking-step-track {
+  position: relative;
+  isolation: isolate;
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.cooking-step-track::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 50% 16px auto;
+  height: 1px;
+  background: var(--color-border);
+}
+.cooking-step-track li { display: flex; align-items: center; gap: 6px; background: #fffdf9; }
+.step-track-dot {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #c5a99b;
+  border-radius: 50%;
+  color: var(--color-muted);
+  background: #fffdf9;
+  font-size: .875rem;
+  font-weight: 600;
+}
+.cooking-step-track .is-done .step-track-dot {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: #fce8df;
+}
+.cooking-step-track [aria-current="step"] .step-track-dot {
+  color: white;
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px #fffdf9, 0 0 0 5px #f8d4ca;
+}
+.step-track-gap { color: var(--color-muted); }
+.step-track-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.cooking-finished .cooking-main {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  background: #fce8df;
+}
+.cooking-finished .cooking-complete { border-radius: 0; }
+.cooking-finished .cooking-scene-wrapper { margin-top: 0; }
+.cooking-finished .cooking-scene { border-radius: 0; }
