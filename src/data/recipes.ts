@@ -233,7 +233,9 @@ export const ramenRecipe: Recipe = {
       ingredientIds: ["egg-soy-sauce", "egg-water", "egg-sugar"],
       tip: "Le sucre doit être dissous avant de laisser refroidir la marinade.",
       instruction:
-        "Mélange 30 ml de sauce soja sans alcool, 60 ml d’eau et 1 cuillère à café de sucre dans une petite casserole. Chauffe en remuant jusqu’à dissolution du sucre. Verse dans un petit récipient propre et laisse refroidir complètement.",
+        "Mélange 30 ml de sauce soja sans alcool, 60 ml d’eau et 1 cuillère à café de sucre dans une petite casserole.",
+      details:
+        "Chauffe en remuant jusqu’à dissolution du sucre. Verse dans un petit récipient propre et laisse refroidir complètement.",
       action: "mix",
     },
     {
@@ -257,14 +259,18 @@ export const ramenRecipe: Recipe = {
       id: "marinate-eggs",
       tip: "Choisis un récipient étroit : la marinade entourera mieux les œufs.",
       instruction:
-        "Place les œufs dans leur marinade complètement froide, dans un récipient suffisamment étroit pour bien les entourer. Couvre et laisse mariner 8 à 12 heures au réfrigérateur. Retourne-les si une partie reste découverte. Poursuis maintenant avec le poulet.",
+        "Couvre et laisse mariner 8 à 12 heures au réfrigérateur.",
+      details:
+        "Place les œufs dans leur marinade complètement froide, dans un récipient suffisamment étroit pour bien les entourer. Retourne-les si une partie reste découverte. Poursuis maintenant avec le poulet.",
       action: "wait",
     },
     {
       id: "prepare-chicken",
       ingredientIds: ["chicken-thighs", "chicken-ginger", "chicken-spring-onion"],
       instruction:
-        "Coupe les 10 g de gingembre du poulet en tranches et son oignon nouveau en tronçons. Déplie les hauts de cuisse désossés pour une cuisson régulière, sans les rouler. Après manipulation du poulet cru, lave tes mains et nettoie les ustensiles et le plan de travail.",
+        "Déplie les hauts de cuisse désossés pour une cuisson régulière, sans les rouler.",
+      details:
+        "Coupe les 10 g de gingembre du poulet en tranches et son oignon nouveau en tronçons. Après manipulation du poulet cru, lave tes mains et nettoie les ustensiles et le plan de travail.",
       action: "cut",
     },
     {
@@ -278,40 +284,52 @@ export const ramenRecipe: Recipe = {
       id: "braise-chicken",
       ingredientIds: ["chicken-soy-sauce", "chicken-water", "chicken-sugar"],
       instruction:
-        "Ajoute 40 ml de sauce soja sans alcool, 200 ml d’eau, 2 cuillères à café de sucre, le gingembre et l’oignon préparés. Fais mijoter à couvert pendant environ 15 à 20 minutes en retournant à mi-cuisson. Vérifie au thermomètre que la partie la plus épaisse atteint 74 °C ; prolonge si nécessaire. Ajoute un peu d’eau si la sauce réduit trop.",
+        "Fais mijoter à couvert pendant environ 15 à 20 minutes en retournant à mi-cuisson. Vérifie au thermomètre que la partie la plus épaisse atteint 74 °C ; prolonge si nécessaire.",
+      details:
+        "Ajoute 40 ml de sauce soja sans alcool, 200 ml d’eau, 2 cuillères à café de sucre, le gingembre et l’oignon préparés. Ajoute un peu d’eau si la sauce réduit trop.",
       action: "cook",
     },
     {
       id: "cool-chicken",
       instruction:
-        "Place le poulet cuit avec son jus dans un récipient peu profond. Refroidis rapidement, au besoin dans un bain d’eau glacée, puis réfrigère dans les deux heures suivant la cuisson. Garde-le au froid jusqu’au lendemain. Ne mélange pas ce jus à la marinade des œufs.",
+        "Place le poulet cuit avec son jus dans un récipient peu profond. Refroidis rapidement, au besoin dans un bain d’eau glacée, puis réfrigère dans les deux heures suivant la cuisson.",
+      details:
+        "Garde-le au froid jusqu’au lendemain. Ne mélange pas ce jus à la marinade des œufs.",
       action: "cool",
     },
     {
       id: "strain-stock",
       instruction:
-        "Après les 3 à 4 heures de cuisson, filtre le bouillon avec une passoire fine. Réserve 800 ml pour les deux bols. S’il est trop léger, fais-le réduire avant de mesurer ; s’il en manque, complète avec un peu d’eau chaude. Refroidis rapidement dans des récipients peu profonds et réfrigère dans les deux heures suivant la fin de cuisson.",
+        "Après les 3 à 4 heures de cuisson, filtre le bouillon avec une passoire fine. Réserve 800 ml pour les deux bols.",
+      details:
+        "S’il est trop léger, fais-le réduire avant de mesurer ; s’il en manque, complète avec un peu d’eau chaude. Refroidis rapidement dans des récipients peu profonds et réfrigère dans les deux heures suivant la fin de cuisson.",
       action: "pour",
     },
     {
       id: "resume-next-day",
       tip: "Dispose les bols et les garnitures avant de lancer la cuisson des nouilles.",
       instruction:
-        "Le lendemain — Les œufs doivent avoir mariné au moins 8 heures. Sors les préparations uniquement lorsque tu es prêt à les utiliser. Prépare deux grands bols et une casserole d’eau pour les nouilles.",
+        "Le lendemain — Les œufs doivent avoir mariné au moins 8 heures.",
+      details:
+        "Sors les préparations uniquement lorsque tu es prêt à les utiliser. Prépare deux grands bols et une casserole d’eau pour les nouilles.",
       action: "wait",
     },
     {
       id: "prepare-tare",
       ingredientIds: ["tare-soy-sauce", "tare-water", "tare-sugar"],
       instruction:
-        "Pour le tare, mélange les 40 ml de sauce soja sans alcool, les 20 ml d’eau et la demi-cuillère à café de sucre du groupe Assaisonnement. Chauffe doucement pour dissoudre le sucre, puis réserve.",
+        "Pour le tare, mélange les 40 ml de sauce soja sans alcool, les 20 ml d’eau et la demi-cuillère à café de sucre du groupe Assaisonnement.",
+      details:
+        "Chauffe doucement pour dissoudre le sucre, puis réserve.",
       action: "mix",
     },
     {
       id: "prepare-aromatic-oil",
       ingredientIds: ["aromatic-oil", "oil-spring-onion", "oil-ginger"],
       instruction:
-        "Dans une petite casserole, chauffe à feu doux la cuillère à soupe d’huile avec le tronçon d’oignon et les 2 tranches de gingembre du groupe Huile aromatique. Lorsque les aromates commencent à dorer et à parfumer l’huile, retire du feu et filtre.",
+        "Dans une petite casserole, chauffe à feu doux la cuillère à soupe d’huile avec le tronçon d’oignon et les 2 tranches de gingembre du groupe Huile aromatique.",
+      details:
+        "Lorsque les aromates commencent à dorer et à parfumer l’huile, retire du feu et filtre.",
       action: "cook",
     },
     {
@@ -319,13 +337,17 @@ export const ramenRecipe: Recipe = {
       ingredientIds: ["topping-spring-onion", "nori"],
       tip: "Garde aussi la partie verte de l’oignon pour le dressage.",
       instruction:
-        "Émince l’oignon nouveau du dressage. Retire les œufs de leur marinade et coupe-les en deux. Tranche le poulet avec des ustensiles propres et prépare les rectangles de nori.",
+        "Émince l’oignon nouveau du dressage. Retire les œufs de leur marinade et coupe-les en deux.",
+      details:
+        "Tranche le poulet avec des ustensiles propres et prépare les rectangles de nori.",
       action: "cut",
     },
     {
       id: "reheat-preparations",
       instruction:
-        "Porte les 800 ml de bouillon à ébullition puis garde-les chauds. Dans une autre casserole, réchauffe les tranches de poulet avec un peu de leur jus jusqu’à atteindre 74 °C à cœur. Garde les œufs à part pour préserver leur texture.",
+        "Porte les 800 ml de bouillon à ébullition puis garde-les chauds. Dans une autre casserole, réchauffe les tranches de poulet avec un peu de leur jus jusqu’à atteindre 74 °C à cœur.",
+      details:
+        "Garde les œufs à part pour préserver leur texture.",
       action: "cook",
     },
     {
@@ -333,14 +355,18 @@ export const ramenRecipe: Recipe = {
       ingredientIds: ["noodles"],
       tip: "La durée dépend des nouilles choisies : garde leur emballage à portée de main.",
       instruction:
-        "Réchauffe les bols avec de l’eau chaude puis vide-les. Fais cuire les nouilles dans une casserole d’eau bouillante séparée, selon la durée indiquée sur leur emballage. Égoutte-les dès qu’elles sont prêtes.",
+        "Fais cuire les nouilles dans une casserole d’eau bouillante séparée, selon la durée indiquée sur leur emballage.",
+      details:
+        "Réchauffe les bols avec de l’eau chaude puis vide-les. Égoutte-les dès qu’elles sont prêtes.",
       action: "cook",
     },
     {
       id: "season-bowls",
       tip: "Ajoute le tare petit à petit et goûte entre chaque ajout.",
       instruction:
-        "Verse 1 cuillère à soupe de tare et la moitié de l’huile aromatique dans chaque bol. Ajoute 400 ml de bouillon et mélange. Goûte et ajoute progressivement du tare si nécessaire : sa quantité dépend de la salinité de ta sauce soja.",
+        "Verse 1 cuillère à soupe de tare et la moitié de l’huile aromatique dans chaque bol. Ajoute 400 ml de bouillon et mélange.",
+      details:
+        "Goûte et ajoute progressivement du tare si nécessaire : sa quantité dépend de la salinité de ta sauce soja.",
       action: "pour",
     },
     {

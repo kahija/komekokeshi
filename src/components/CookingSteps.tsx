@@ -176,6 +176,12 @@ export function CookingSteps({ recipeId, steps, ingredients, onReturnToRecipe }:
               durationSeconds={currentStep.durationSeconds}
             />
           )}
+          {currentStep.details && (
+            <aside className="cooking-step-details" key={currentStep.id}>
+              <h3>Précisions de l’étape</h3>
+              <p>{currentStep.details}</p>
+            </aside>
+          )}
           {currentStep.tip && (
             <aside className="kokeshi-tip">
               <div className="kokeshi-tip-heading">
@@ -185,12 +191,7 @@ export function CookingSteps({ recipeId, steps, ingredients, onReturnToRecipe }:
               <p>{currentStep.tip}</p>
             </aside>
           )}
-          {currentStep.details && (
-            <aside className="cooking-step-details" key={currentStep.id}>
-              <h3>Précisions de l’étape</h3>
-              <p>{currentStep.details}</p>
-            </aside>
-          )}
+
         </div>
       )}
 
