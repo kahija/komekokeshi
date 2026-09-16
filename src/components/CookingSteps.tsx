@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { RecipeIngredient, RecipeStep } from "../data/recipes";
+import kokeshiHead from "../assets/kokeshi-head.webp";
 import kokeshiCook from "../assets/kokeshi-cook.webp";
 import kokeshiMix from "../assets/kokeshi-mix.webp";
 import kokeshiCut from "../assets/kokeshi-cut.webp";
@@ -177,7 +178,10 @@ export function CookingSteps({ recipeId, steps, ingredients, onReturnToRecipe }:
           )}
           {currentStep.tip && (
             <aside className="kokeshi-tip">
-              <h3>Astuce Kokeshi</h3>
+              <div className="kokeshi-tip-heading">
+                <img src={kokeshiHead} alt="" width={40} height={40} />
+                <h3>Astuce Kokeshi</h3>
+              </div>
               <p>{currentStep.tip}</p>
             </aside>
           )}

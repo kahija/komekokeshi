@@ -359,3 +359,12 @@
 .cooking-finished .cooking-complete { border-radius: 0; }
 .cooking-finished .cooking-scene-wrapper { margin-top: 0; }
 .cooking-finished .cooking-scene { border-radius: 0; }
+
+.kokeshi-tip-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.kokeshi-tip-heading img { flex-shrink: 0; object-fit: contain; }
+.kokeshi-tip-heading h3 { margin: 0; }
