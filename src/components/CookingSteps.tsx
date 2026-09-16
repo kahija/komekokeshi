@@ -3,6 +3,7 @@ import type { RecipeIngredient, RecipeStep } from "../data/recipes";
 import kokeshiCook from "../assets/kokeshi-cook.webp";
 import kokeshiMix from "../assets/kokeshi-mix.webp";
 import kokeshiCut from "../assets/kokeshi-cut.webp";
+import { readProgress } from "../data/cookingProgress";
 import { Timer } from "./Timer";
 import kokeshiKitchen from "../assets/kokeshi-kitchen.webp";
 import kokeshiComplete from "../assets/kokeshi-complete-w.webp";
@@ -13,45 +14,6 @@ type CookingStepsProps = {
   steps: RecipeStep[];
   ingredients: RecipeIngredient[];
 };
-
-type CookingProgress = {
-  stepIndex: number;
-  isComplete: boolean;
-};
-
-function readProgress(storageKey: string, stepCount: number): CookingProgress {
-  const initialProgress = {
-    stepIndex: 0,
-    isComplete: false,
-  };
-
-  try {
-    const storedValue = localStorage.getItem(storageKey);
-
-    if (!storedValue) return initialProgress;
-
-    const saved = JSON.parse(storedValue);
-
-    if (
-      saved === null ||
-      typeof saved !== "object" ||
-      !Number.isInteger(saved.stepIndex) ||
-      saved.stepIndex < 0 ||
-      saved.stepIndex >= stepCount ||
-      typeof saved.isComplete !== "boolean" ||
-      (saved.isComplete && saved.stepIndex !== stepCount - 1)
-    ) {
-      return initialProgress;
-    }
-
-    return {
-      stepIndex: saved.stepIndex,
-      isComplete: saved.isComplete,
-    };
-  } catch {
-    return initialProgress;
-  }
-}
 
 export function CookingSteps({ recipeId, steps, ingredients }: CookingStepsProps) {
   const instructionRef = useRef<HTMLDivElement>(null);

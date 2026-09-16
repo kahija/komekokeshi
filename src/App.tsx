@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { readProgress } from "./data/cookingProgress";
 import { ramenRecipe } from "./data/recipes";
 import { CookingSteps } from "./components/CookingSteps";
 import { IngredientList } from "./components/IngredientList";
@@ -9,6 +10,34 @@ import "./App.css";
 function App() {
   const [showIngredients, setShowIngredients] = useState(false);
   const [isCooking, setIsCooking] = useState(false);
+  const [progress, setProgress] = useState(() =>
+    readProgress(`komekokeshi:progress:${ramenRecipe.id}`, ramenRecipe.steps.length),
+  );
+  const cookingTitleRef = useRef<HTMLHeadingElement>(null);
+  const startButtonRef = useRef<HTMLButtonElement>(null);
+  const hasNavigated = useRef(false);
+
+  useEffect(() => {
+    if (!hasNavigated.current) return;
+    const target = isCooking ? cookingTitleRef.current : startButtonRef.current;
+    target?.focus({ preventScroll: true });
+    target?.scrollIntoView({ block: "center", behavior: "instant" });
+  }, [isCooking]);
+
+  function enterCooking() {
+    hasNavigated.current = true;
+    setIsCooking(true);
+  }
+
+  function leaveCooking() {
+    setProgress(readProgress(
+      `komekokeshi:progress:${ramenRecipe.id}`,
+      ramenRecipe.steps.length,
+    ));
+    hasNavigated.current = true;
+    setIsCooking(false);
+  }
+
 
   if (isCooking) {
     return (
@@ -17,7 +46,7 @@ function App() {
           <button
             className="cooking-back"
             type="button"
-            onClick={() => setIsCooking(false)}
+            onClick={leaveCooking}
             aria-label="Quitter la préparation et revenir à l’accueil"
           >
             <span aria-hidden="true">←</span>
@@ -25,7 +54,7 @@ function App() {
 
           <div className="cooking-heading">
             <Brand />
-            <h1>{ramenRecipe.title}</h1>
+            <h1 ref={cookingTitleRef} tabIndex={-1}>{ramenRecipe.title}</h1>
             <p className="cooking-details">
               {ramenRecipe.country} · {ramenRecipe.servings} personnes
             </p>
@@ -101,9 +130,14 @@ function App() {
               <button
                 className="recipe-toggle"
                 type="button"
-                onClick={() => setIsCooking(true)}
+                ref={startButtonRef}
+                onClick={enterCooking}
               >
-                Commencer la recette
+                {progress.isComplete
+                  ? "Revoir la recette terminée"
+                  : progress.stepIndex > 0
+                    ? `Reprendre à l’étape ${progress.stepIndex + 1}`
+                    : "Commencer la recette"}
               </button>
 
               <button
