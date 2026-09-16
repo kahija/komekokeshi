@@ -64,6 +64,7 @@ export function Timer({ storageKey, durationSeconds }: TimerProps) {
 
   const isFinished = remainingSeconds === 0;
   const isRunning = timer.endsAt !== null && !isFinished;
+  const isPaused = !isRunning && !isFinished && remainingSeconds < durationSeconds;
 
   useEffect(() => {
     if (!isRunning) return;
@@ -132,7 +133,7 @@ export function Timer({ storageKey, durationSeconds }: TimerProps) {
 
       <div className="step-navigation">
         <button type="button" onClick={handleToggle} disabled={isFinished}>
-          {isRunning ? "Pause" : "Démarrer"}
+          {isRunning ? "Pause" : isPaused ? "Reprendre" : "Démarrer"}
         </button>
 
         <button type="button" onClick={handleReset}>
@@ -140,7 +141,9 @@ export function Timer({ storageKey, durationSeconds }: TimerProps) {
         </button>
       </div>
 
-      <p role="status">{isFinished ? "Temps écoulé !" : ""}</p>
+      <p role="status">
+        {isFinished ? "Temps écoulé !" : isRunning ? "En cours" : isPaused ? "En pause" : "Prêt à démarrer"}
+      </p>
     </div>
   );
 }
